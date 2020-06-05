@@ -1,9 +1,9 @@
 class QuotesController < ApplicationController
   def get
-    render json: quote_data
+    render json: quote
   end
 
-  def quote_data
+  def quote
     endpoint = endpoint_for_symbol(params['symbol'])
     response = raw_response(endpoint)
     parse_quote(response)
