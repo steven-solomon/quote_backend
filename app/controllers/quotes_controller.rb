@@ -10,20 +10,25 @@ class QuotesController < ApplicationController
   end
 
   def parse_quote(body)
-    JSON.parse(body).fetch('quotes').fetch('quote')
+    securities = JSON.parse(body).fetch('securities').fetch('security')
+    if securities.kind_of?(Array)
+      securities
+    else
+      [securities]
+    end
   end
 
   def raw_response(endpoint)
     response = HTTParty.get(endpoint, headers: {
         'Authorization' => "Bearer #{client_id}",
         'Accept' => 'application/json'
-      })
+    })
 
     response.body
   end
 
   def endpoint_for_symbol(symbol)
-    "https://sandbox.tradier.com/v1/markets/quotes?symbols=#{symbol}&greeks=false"
+    "https://sandbox.tradier.com/v1/markets/lookup?q=#{symbol}&types=stock"
   end
 
   def client_id
