@@ -1,4 +1,4 @@
-class ExpirationController < ApplicationController
+class ExpirationsController < ApplicationController
   include TradierRequest
 
   def get
