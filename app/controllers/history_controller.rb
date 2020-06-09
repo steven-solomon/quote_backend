@@ -14,9 +14,13 @@ class HistoryController < ApplicationController
   private
 
   def endpoint_for_symbol(symbol)
-    start_date = '2019-05-04'
-    end_date = '2020-05-04'
+    start_date = year_month_day(1.year.ago)
+    end_date = year_month_day(Date.today)
     "#{base_url}/v1/markets/history?symbol=#{symbol}&start=#{start_date}&end=#{end_date}"
+  end
+
+  def year_month_day(date)
+    date.strftime('%F')
   end
 
   def parse_history(body)
