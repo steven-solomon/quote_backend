@@ -1,4 +1,6 @@
 class QuotesController < ApplicationController
+  include TradierRequest
+
   def get
     render json: quote
   end
@@ -18,20 +20,7 @@ class QuotesController < ApplicationController
     end
   end
 
-  def raw_response(endpoint)
-    response = HTTParty.get(endpoint, headers: {
-        'Authorization' => "Bearer #{client_id}",
-        'Accept' => 'application/json'
-    })
-
-    response.body
-  end
-
   def endpoint_for_symbol(symbol)
-    "https://sandbox.tradier.com/v1/markets/lookup?q=#{symbol}&types=stock"
-  end
-
-  def client_id
-    ENV.fetch('CLIENT_ID')
+    "#{base_url}/v1/markets/lookup?q=#{symbol}&types=stock"
   end
 end
