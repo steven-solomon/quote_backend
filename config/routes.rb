@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get 'quote', action: 'get', controller: 'quotes'
   get 'expiration', action: 'get', controller: 'expirations'
+  get 'option_chain', action: 'get', controller: 'option_chains'
 end
