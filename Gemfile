@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'rack-cors'
 gem 'httparty'
 
+gem 'rspec-rails'
+gem 'rspec'
+
 gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Active Storage variant
