@@ -14,11 +14,12 @@ class OptionChainsController < ApplicationController
   def parse_option_chains(body)
     options = JSON.parse(body).fetch("options").fetch("option")
     options.group_by { |option| option.fetch("strike") }.map do |strike, options|
-      put_option = options.first {|o| o.fetch('option_type') == 'put'}
-      call_option = options.first {|o| o.fetch('option_type') == 'call'}
+      put_option = options.find {|o| o.fetch('option_type') == 'put'}
+      call_option = options.find {|o| o.fetch('option_type') == 'call'}
       {strike: strike, put: put_option, call: call_option}
     end
 
+    # puts foo
     #
     # puts = options.select { |option| option.fetch('option_type') == "put" }
     # calls = options.select { |option| option.fetch('option_type') == "call" }
