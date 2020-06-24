@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_06_24_153343) do
 
-  create_table "options_trades", force: :cascade do |t|
+  create_table "option_trades", force: :cascade do |t|
     t.integer "action", default: 0
     t.float "strike"
     t.float "premium"
