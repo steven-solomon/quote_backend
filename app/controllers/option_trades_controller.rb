@@ -13,6 +13,10 @@ class OptionTradesController < ApplicationController
   private
 
   def option_trade_params
-    params.require(:option_trade).permit(:action, :strike, :premium)
+    trade_params = {}
+    trade_params[:type] = params.fetch(:type)
+    trade_params[:strike] = params.fetch(:strike)
+    trade_params[:premium] = params.fetch(:premium)
+    trade_params
   end
 end
